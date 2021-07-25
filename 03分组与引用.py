@@ -23,7 +23,7 @@ def test2():
 def test3():
     test_string = '123456789012345678'
     pattern1 = r"\d{15}(\d{3})?"
-    # 不保存子组，子组不会被再次引用，提升性能，减少错误。
+    # 不保存子组，子组不会被再次引用，提升性能，减少错误。(?:正则)
     pattern2 = r"\d{15}(?:\d{3})?"
     matches1 = re.finditer(pattern1, test_string)
     matches2 = re.finditer(pattern2, test_string)
@@ -34,7 +34,7 @@ def test3():
 
 def test4():
     test_string = "profile/wzl/"
-    # 命名分组，相对数字分组更容易辨识，不易改变。
+    # 命名分组，相对数字分组更容易辨识，不易改变。(?:P<name>正则)
     pattern = r"^profile/(?P<username>\w+)/$"
     matches = re.finditer(pattern, test_string)
     for match_num, match in enumerate(matches):
