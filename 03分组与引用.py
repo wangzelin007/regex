@@ -70,8 +70,19 @@ def test6():
         print(result)
 
 
+def test7():
+    assert re.search(r"^ab+$", "ab") is not None  # <re.Match object; span=(0, 2), match='ab'>
+    assert re.search(r"^ab+$", "abb") is not None # <re.Match object; span=(0, 3), match='abb'>
+    assert re.search(r"^ab+$", "abab") is None # None
+    assert re.search(r"ab+", "abab") is not None # <re.Match object; span=(0, 2), match='ab'>
+    assert re.search(r"^(ab)+$", "ab") is not None # <re.Match object; span=(0, 2), match='ab'>
+    assert re.search(r"^(ab)+$", "abb") is None # None
+    assert re.search(r"(ab)+", "abb") is not None # <re.Match object; span=(0, 2), match='ab'>
+    assert re.search(r"^(ab)+$", "abab") is not None # <re.Match object; span=(0, 4), match='abab'>
+
+
 def test():
-    test6()
+    test7()
 
 if __name__ == '__main__':
     test()
