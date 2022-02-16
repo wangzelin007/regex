@@ -1,6 +1,6 @@
 # 断言指对匹配到的文本位置的限定
 import re
-import regex
+# import regex
 
 def test1():
     # 单词边界 Word Boundary \b
@@ -42,8 +42,21 @@ def test4():
     if result:
         print(result)
 
+def test5():
+    # 匹配多个单词
+    pattern = r"az \b(network|vm|disk|account management-group)\b"
+    test_str = ("az network\n"
+                "az vm\n"
+                "az disk\n"
+                "az ad\n"
+                "network\n"
+                "az account\n"
+                "az account management-group\n"
+                "az ac\n")
+    print(re.findall(pattern, test_str))
+
 def test():
-    test4()
+    test5()
 
 if __name__ == '__main__':
     test()
