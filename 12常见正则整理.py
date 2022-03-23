@@ -99,3 +99,21 @@ def title():
     reg = r'(?i)<title>.*?</title>'
     # 提取引号内容 [^"]+
     # 提取方括号内容 [^>]+
+
+def brackets():
+    string = '[Component Name 1] BREAKING] CHANGE: `az command a`: Make some customer-facing breaking change\r\n'
+    reg1 = r'[\[](.*?)[\]]'
+    # 最小匹配 Component Name 1
+    reg2 = r'[\[](.*)[\]]'
+    # 贪婪匹配 Component Name 1] BREAKING
+    if re.findall(reg1, string):
+        print(re.findall(reg1, string)[0])
+    string = '[Component Name 1] [BREAKING] CHANGE: `az command a`: Make some customer-facing breaking change\r\n'
+    if re.findall(reg1, string):
+        print(re.findall(reg1, string)[0])
+    string = 'Component Name 1 BREAKING CHANGE: `az command a`: Make some customer-facing breaking change\r\n'
+    if re.findall(reg1, string):
+        print(re.findall(reg1, string)[0])
+
+if __name__ == '__main__':
+    brackets()
